@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonRow, IonIcon, IonCol, IonThumbnail, IonImg } from '@ionic/angular/standalone';
 import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonImg, IonCol, IonIcon, IonRow, IonHeader, IonToolbar, IonTitle, IonContent, IonThumbnail],
 })
 export class HomePage {
 
@@ -15,10 +15,15 @@ export class HomePage {
 
   private api = inject(ApiService);
 
-  constructor() {}
+  constructor() { }
+
+  ngOnInit() {
+    console.log('ngoninit homepage is initializing and loading');
+    this.getItems();
+  }
 
   getItems() {
-   this.allItems = this.api.items;
-   this.items = [...this.allItems];
+    this.allItems = this.api.items;
+    this.items = [...this.allItems]; //Spread Operator wont make changes to allItems if items is affected
   }
 }

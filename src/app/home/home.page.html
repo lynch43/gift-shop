@@ -7,7 +7,17 @@
 </ion-header>
 
 <ion-content>
- 
+
+  <ion-row>
+    @for(item of items; track i; let i=$index) {
+      <ion-col>
+        <ion-thumbnail>
+          <ion-img [src]="item?.cover"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+    }
+    
+  </ion-row>
 
  
 </ion-content>
