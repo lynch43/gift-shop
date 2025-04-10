@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   items: any[] = [
-    { id: 1, name: 'Product 1', price: 25.99, status: true, rating: 4, cover: 'assets/products.jpg', description: 'This is a description for Product 1' },
+    { id: 1, name: 'Product 1', price: 25.99, status: true, rating: 4, cover: 'assets/product.jpg', description: 'This is a description for Product 1' },
     { id: 2, name: 'Product 2', price: 19.99, status: true, rating: 3, cover: 'assets/product.jpg', description: 'This is a description for Product 2' },
     { id: 3, name: 'Product 3', price: 35.99, status: false, rating: 5, cover: 'assets/product.jpg', description: 'This is a description for Product 3' },
     { id: 4, name: 'Product 4', price: 50.99, status: true, rating: 2, cover: 'assets/product.jpg', description: 'This is a description for Product 4' },
@@ -20,7 +20,7 @@ export class ApiService {
     { id: 12, name: 'Product 12', price: 22.99, status: true, rating: 2, cover: 'assets/product.jpg', description: 'This is a description for Product 12' },
     { id: 13, name: 'Product 13', price: 39.99, status: false, rating: 4, cover: 'assets/product.jpg', description: 'This is a description for Product 13' },
     { id: 14, name: 'Product 14', price: 77.99, status: true, rating: 5, cover: 'assets/product.jpg', description: 'This is a description for Product 14' },
-    { id: 15, name: 'Product 15', price: 99.99, status: true, rating: 5, cover: 'assets/products/product.jpg', description: 'This is a description for Product 15' }
+    { id: 15, name: 'Product 15', price: 99.99, status: true, rating: 5, cover: 'assets/product.jpg', description: 'This is a description for Product 15' }
   ];
 
 }
