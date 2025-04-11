@@ -6,6 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-toolbar>
+  <ion-searchbar
+    debounce="850"
+    #searchInput
+    mode="ios"
+    class="srchBar"
+    placeholder="Know what you want?"
+    (ionInput)="onSearchChange($event)">
+    
+  </ion-searchbar>
+</ion-toolbar>
+
 <ion-content>
 
   <ion-row>
