@@ -1,18 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonRow, IonIcon, IonCol, IonThumbnail, IonImg, IonCard, IonLabel, IonText, IonSearchbar } from '@ionic/angular/standalone';
 import { ApiService } from '../services/api/api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonSearchbar, IonText, IonLabel, IonCard, IonImg, IonCol, IonIcon, IonRow, IonHeader, IonToolbar, IonTitle, IonContent, IonThumbnail],
+  imports: [IonSearchbar, IonText, IonLabel, IonCard, IonImg, IonCol, IonIcon, IonRow, IonHeader, IonToolbar, IonTitle, IonContent, IonThumbnail, RouterLink],
 })
 export class HomePage {
 
   items: any[] = [];
   allItems: any[] = [];
-  query!: string; //query is Expected to be astring. 
+  query!: string; //query is Expected to be astring. NOT NULL
 
   private api = inject(ApiService);
 
