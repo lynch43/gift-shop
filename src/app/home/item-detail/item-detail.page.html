@@ -15,4 +15,10 @@
       </ion-toolbar>
       
   </ion-header>
+  <div [style.backgroundImage]="'url(' + item?.cover +')'" class="bg" align="centre">
+    <div>
+      <div class="rating" align="centre"></div>
+      {{ item?.rating }}
+    </div>
+  </div>
 </ion-content>

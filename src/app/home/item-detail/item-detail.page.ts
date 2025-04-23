@@ -35,13 +35,16 @@ export class ItemDetailPage implements OnInit {
     console.log('check the id: ', id);
     // check if id is not there or = 0 
     if (!id || id == '0') {
-      this.navCtrl.back();
+      this.navCtrl.back(); // go back if so
       return;
     }
     this.id = id;
 
+    // Search for the item in the items array using the id that we know is for sure valid.
+    //use find method to locate the item and match it to id and equal it to the id.
+
     this.item = this.api.items.find((record) => record.id == id);
-    console.log(this.item);
+    console.log(this.item); // test just check log
   }
 
 }
