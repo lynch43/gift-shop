@@ -26,6 +26,13 @@
     <ion-label>
       {{item?.name}}
       <p class="desc">{{item?.description}}</p>
+
+      <p>
+        <ion-text color="dark">€</ion-text>
+        <ion-text color="dark" class="price">
+          <span>{{ item?.price}}</span>
+        </ion-text>
+      </p>
     </ion-label>
   </ion-item>
 
