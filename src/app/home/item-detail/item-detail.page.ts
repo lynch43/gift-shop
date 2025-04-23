@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { inject } from '@angular/core';
 import { NavController } from '@ionic/angular/standalone';
 import { ApiService } from 'src/app/services/api/api.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -22,6 +23,7 @@ export class ItemDetailPage implements OnInit {
   item: any;
   addToBag!: any;
   private api = inject(ApiService);
+  private cartService = inject(CartService);
 
   ngOnInit() {
     this.getItem(); // fetch the item details
@@ -49,6 +51,7 @@ export class ItemDetailPage implements OnInit {
   }
 
   addItem() {
+    const result = this.cartService.addQuantity(this.item);
     this.addedText();
   }
 
