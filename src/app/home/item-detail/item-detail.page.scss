@@ -16,9 +16,27 @@ ion-buttons {
 div.bg {
     width: 100%;
     height: 30rem;
+    position: relative; // has absolute child
+    padding: 20px;
     border-radius: 0 0 20px 20px;
     background-size: cover;
     background-position: center;
-    background-repeat :no-repeat;
+    background-repeat: no-repeat;
     background-color: var(--ion-color-light);
-}
+  
+    .rating {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 13%;
+      border-radius: 25px;
+      padding: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+

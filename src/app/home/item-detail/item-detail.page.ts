@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { inject } from '@angular/core';
 import { NavController } from '@ionic/angular/standalone';
@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/services/api/api.service';
   templateUrl: './item-detail.page.html',
   styleUrls: ['./item-detail.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
+  imports: [IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
 })
 export class ItemDetailPage implements OnInit {
 

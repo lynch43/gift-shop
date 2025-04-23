@@ -15,9 +15,9 @@
       </ion-toolbar>
       
   </ion-header>
-  <div [style.backgroundImage]="'url(' + item?.cover +')'" class="bg" align="centre">
-    <div>
-      <div class="rating" align="centre"></div>
+  <div [style.backgroundImage]="'url(' + item?.cover +')'" class="bg">
+    <div class="rating">
+      <ion-icon name="star" color="warning"></ion-icon>
       {{ item?.rating }}
     </div>
   </div>
