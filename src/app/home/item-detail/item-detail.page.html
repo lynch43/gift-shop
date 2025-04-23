@@ -13,7 +13,18 @@
         </ion-buttons>
 
 
-        // add the cart button here
+        <ion-button
+          fill="clear"
+          soze="large"
+          color="dark"
+        >
+          <ion-icon name="bag-handle" slot="icon-only"></ion-icon>
+          @if(totalItems > 0) { 
+            <ion-badge>
+              <ion-text>{{totalItems}}</ion-text>
+            </ion-badge>
+          }
+        </ion-button>
 
           
       </ion-toolbar>

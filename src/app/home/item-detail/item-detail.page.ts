@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonIcon, IonItem, IonLabel, IonText, IonFooter, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonIcon, IonItem, IonLabel, IonText, IonFooter, IonButton, IonBadge } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { inject } from '@angular/core';
 import { NavController } from '@ionic/angular/standalone';
@@ -13,7 +13,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
   templateUrl: './item-detail.page.html',
   styleUrls: ['./item-detail.page.scss'],
   standalone: true,
-  imports: [IonButton, IonFooter, IonText, IonLabel, IonItem, IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
+  imports: [IonBadge, IonButton, IonFooter, IonText, IonLabel, IonItem, IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
 })
 export class ItemDetailPage implements OnInit {
 
@@ -22,6 +22,7 @@ export class ItemDetailPage implements OnInit {
   id!: string;
   item: any;
   addToBag!: any;
+  totalItems = 1;
   private api = inject(ApiService);
   private cartService = inject(CartService);
 

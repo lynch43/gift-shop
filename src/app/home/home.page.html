@@ -6,6 +6,17 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-buttons slot="end">
+  <ion-button fill="clear">
+    <ion-icon name="bag-handle"></ion-icon>
+    @if(totalItems > 0 ) {
+      <ion-badge color="primary">
+        <ion-text>{{ totalItems }}</ion-text>
+      </ion-badge>
+    }
+  </ion-button>
+</ion-buttons>
+
 <ion-toolbar>
   <ion-searchbar
     debounce="850"
