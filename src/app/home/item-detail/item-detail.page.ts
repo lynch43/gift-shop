@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonIcon, IonItem, IonLabel, IonText } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonIcon, IonItem, IonLabel, IonText, IonFooter, IonButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { inject } from '@angular/core';
 import { NavController } from '@ionic/angular/standalone';
@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/services/api/api.service';
   templateUrl: './item-detail.page.html',
   styleUrls: ['./item-detail.page.scss'],
   standalone: true,
-  imports: [IonText, IonLabel, IonItem, IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
+  imports: [IonButton, IonFooter, IonText, IonLabel, IonItem, IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
 })
 export class ItemDetailPage implements OnInit {
 
@@ -20,6 +20,7 @@ export class ItemDetailPage implements OnInit {
   private navCtrl = inject(NavController);
   id!: string;
   item: any;
+  addToBag!: any;
   private api = inject(ApiService);
 
   ngOnInit() {
@@ -45,6 +46,17 @@ export class ItemDetailPage implements OnInit {
 
     this.item = this.api.items.find((record) => record.id == id);
     console.log(this.item); // test just check log
+  }
+
+  addItem() {
+    this.addedText();
+  }
+
+  addedText() {
+    this.addToBag = 'Added to Bag';
+    setTimeout(() => {
+      this.addToBag = null;
+    }, 2000);
   }
 
 }

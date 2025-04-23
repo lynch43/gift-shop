@@ -37,3 +37,21 @@
   </ion-item>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      size="large"
+      expand="block"
+      [color]="addToBag ? 'success' : 'primary'"
+      (click)="addItem()">
+        <ion-icon 
+        slot="start" 
+        [name]="addToBag ? 'bag-handle' : 'bag-handle-outline'"
+        ></ion-icon>
+      <ion-text>
+        {{addToBag || 'Add To Bag'}}
+      </ion-text>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
