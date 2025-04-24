@@ -1,2 +1,56 @@
-# gift-shop
-Angular - Ionic app, generic gift shop application
+# eCommerce App - Angular and Ionic
+
+This project is a  eCommerce application developed using Angular and Ionic.
+ The app provides a simple, clean user interface
+ for browsing products and viewing item details. You can add items to a cart 
+ and then view your cart. I also added a Geolocation feature that will determine wether the products should be displayed in
+ different countries
+
+
+## Project Overview
+
+The purpose of this application is to serve as the foundation of an 
+eCommerce platform. It demonstrates key features typically found in shopping 
+applications such as a home page showcasing products and a dedicated item details page.
+
+This project is built using Visual Studio Code and tested on Windows 10.
+It was also built for purpose for an end of year project in Front End Web Development module year 2
+
+Some of the rquirements for said project were
+
+- 
+
+## Features
+
+- A home page that displays a list of available products
+- A detailed item page that is accessed when a product is clicked
+- Built using Angular for structure and logic, and Ionic for UI components
+- Used standalone components in the project
+- SCSS for styling. mainly for organisation. Most of this project could have been just done in CSS 
+
+## Technologies Used
+
+- Angular 17+
+- Ionic Framework 7
+- TypeScript
+- SCSS
+- Visual Studio Code
+- Node.js and npm for package management
+
+## Folder Structure
+
+The core structure of the application is as follows:
+
+INSERT FOLDER STRUCTURE DIAGRAM HERE
+
+## Wireframes 
+
+I just did one for each page. All on mobile.
+
+- link in Readme.md
+
+
+## API
+
+
+## Issues Persisting
