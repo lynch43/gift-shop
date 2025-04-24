@@ -15,15 +15,28 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class HomePage {
 
+  // Used to store current coordinates
   lat: string = '';
   long: string = '';
-  currency: string = 'GBP'; // default currency
 
+  /* Default set here is weird. But when you see it 
+      says euro then you see the benefit */ 
+  currency: string = 'GBP';
+
+  /* items to display and all Items as master copy to filter / search from */
   items: any[] = [];
   allItems: any[] = [];
-  query!: string; //query is Expected to be astring. NOT NULL
+
+  /* Search inputs */
+  query!: string;
+
+  /* Will be set to 0 if deployed */
   totalItems = 1;
-  cartSub!: Subscription; // Tracking live subscription to cart changes.
+
+  /* Subscription used to track live update from the cart */
+  cartSub!: Subscription;
+
+  /* Global */
   private api = inject(ApiService);
   private cartService = inject(CartService);
 
