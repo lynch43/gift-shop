@@ -37,6 +37,8 @@ export class ItemDetailPage implements OnInit {
   getItem() {
     const id = this.route.snapshot.paramMap.get('id');
     console.log('check the id: ', id);
+
+
     // check if id is not there or = 0 
     if (!id || id == '0') {
       this.navCtrl.back(); // go back if so
@@ -44,11 +46,19 @@ export class ItemDetailPage implements OnInit {
     }
     this.id = id;
 
-    // Search for the item in the items array using the id that we know is for sure valid.
-    //use find method to locate the item and match it to id and equal it to the id.
 
-    this.item = this.api.items.find((record) => record.id == id);
-    console.log(this.item); // test just check log
+    // Avvessing the api service instead of json data
+    this.api.getProductById(id).subscribe({
+      next: (product) => {
+        this.item = product;
+        console.log('Fetched item:', this.item);
+      },
+      error: (err) => {
+        console.error('error getting item ', err);
+        this.navCtrl.back(); // if error just navigate back
+      }
+    });
+
   }
 
   addItem() {

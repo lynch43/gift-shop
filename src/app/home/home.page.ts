@@ -65,8 +65,15 @@ export class HomePage {
 
   /** Load all items into items and allItems arrays */
   getItems() {
-    this.allItems = this.api.items;
-    this.items = [...this.allItems]; // Use spread to avoid mutating the original
+
+    this.api.getAllProducts().subscribe({
+      next: (data) => {
+        this.allItems = data;
+        this.items = [...this.allItems];
+      },
+      error: (err) => console.error('Error getting the products', err)
+    });
+
   }
 
   /** Triggered on search bar input */
@@ -88,14 +95,16 @@ export class HomePage {
 
   /** Filter items from API by name containing query string */
   searchItems() {
-    if (!this.query) {
-      this.items = this.api.items;
+    if (!this.query || this.query.trim() === '') {
+      this.items = [...this.allItems]; // show all items when query is empty
     } else {
-      this.items = this.api.items.filter(item =>
-        item.name.toLowerCase().includes(this.query.toLowerCase())
+      const queryLower = this.query.toLowerCase();
+      this.items = this.allItems.filter(item =>
+        item.title.toLowerCase().includes(queryLower)
       );
     }
   }
+  
 
   /** Get coordinates using Capacitor Geolocation */
   async getGPSAndSetCurrency() {
