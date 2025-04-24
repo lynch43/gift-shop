@@ -15,7 +15,7 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class HomePage {
 
-  let: string = '';
+  lat: string = '';
   long: string = '';
   currency: 'GBP' | 'EUR' = 'GBP'; // default
 
@@ -35,12 +35,15 @@ export class HomePage {
   ngOnInit() {
     console.log('ngoninit homepage is initializing and loading');
     this.getItems();
+    this.getGPSAndSetCurrency(); // Get currency on init
 
     this.cartSub = this.cartService.cart.subscribe({
       next: (cart) => {
         this.totalItems = cart ? cart?.totalItem : 0;
       }
     });
+
+
   }
 
   ngOnDestroy(): void {
@@ -86,13 +89,21 @@ export class HomePage {
   // GPS logic
   async getGPSAndSetCurrency() {
     try {
-
       const coords = await Geolocation.getCurrentPosition();
-      this.lat = coords.corrds.lattitude.toString();
+      this.lat = coords.coords.latitude.toString();
+      this.long = coords.coords.longitude.toString();
       this.setCurrencyFromCoords(coords.coords.latitude, coords.coords.longitude);
-
     } catch (error) {
-      console.error('Failed to get GPS:', error);
+      console.error('Failed to get GPS location:', error);
     }
+  }
+
+
+  setCurrencyFromCoords(lat: number, lng: number) {
+    // Very basic region logic
+    const inEuroZone = (lat >= 35 && lat <= 60) && (lng >= -10 && lng <= 30);
+    this.currency = inEuroZone ? 'EUR' : 'GBP';
+  
+    console.log(`Currency based on location: ${this.currency}`);
   }
 }
