@@ -29,6 +29,16 @@
   </ion-searchbar>
 </ion-toolbar>
 
+<ion-card-header>
+  <ion-card-title>Location & Currency</ion-card-title>
+</ion-card-header>
+<ion-card-content>
+  <ion-button (click)="getGPSAndSetCurrency()">Get Location & Currency</ion-button>
+  <p>Latitude: {{ lat }}</p>
+  <p>Longitude: {{ long }}</p>
+  <p>Currency: <strong>{{ currency }}</strong></p>
+</ion-card-content>
+
 <ion-content>
 
   <ion-row>
