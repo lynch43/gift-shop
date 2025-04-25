@@ -3,7 +3,7 @@
 ## About
 
 This is a frontend app built using **Angular** and **Ionic**.  
-It connects to the [FakeStoreAPI](https://fakestoreapi.com/products) and is set up to run as a PWA on browser and mobile.  
+It connects to the [FakeStoreAPI](https://fakestoreapi.com/products) they have a pretty good docs [here](https://fakestoreapi.com/docs )and is set up to run as a PWA on browser and mobile.  I watched videos on youtube of this guy []
 The app uses a live cart system, location-based currency, and a dark theme for better user experience.
 
 ---
@@ -25,7 +25,7 @@ The app uses a live cart system, location-based currency, and a dark theme for b
 The project uses:
 
 - **Standalone Components** instead of the older Angular Module system  
-  Referenced [Ionic Standalone Migration Docs](https://ionicframework.com/docs/angular/standalone-components) to structure the pages properly.
+  Referenced [Ionic Standalone Migration Docs](https://ionicframework.com/docs/angular/build-options#standalones) to structure the pages properly.
 
 - **localStorage** directly instead of `@ionic/storage-angular`  
   After testing, I decided to write my own `LocalStorageService` because Ionic storage gave issues when testing with `ionic serve`.  
@@ -40,8 +40,10 @@ The project uses:
   Components like Home and Cart pages subscribe to this to show live updates without manual refresh.
 
 - **Capacitor Geolocation Plugin**  
-  Pulled user GPS data using `@capacitor/geolocation`.  
-  Based the currency switch logic on coordinates (eurozone or not).  
+  Pulled user GPS data using `@capacitor/geolocation`. 
+
+  Based the currency switch logic on coordinates (eurozone or not). 
+  I checked it to make sure it is somewhat accurate. ![screenshots](src\assets\geolocation-test.png) 
   Used [Capacitor Geolocation Docs](https://capacitorjs.com/docs/apis/geolocation) as a guide and the documentation of the module 'Front End Web Development' used in college.
 
 - **Error Handling**  
