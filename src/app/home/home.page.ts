@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule} from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonRow, IonIcon, IonCol, IonThumbnail, IonImg, IonCard, IonLabel, IonText, IonSearchbar, IonButtons, IonButton, IonBadge, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
 import { ApiService } from '../services/api/api.service';
 import { RouterLink } from '@angular/router';
@@ -11,7 +12,7 @@ import { Geolocation } from '@capacitor/geolocation';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonCardContent, IonCardTitle, IonCardHeader, IonBadge, IonButton, IonButtons, IonSearchbar, IonText, IonLabel, IonCard, IonImg, IonCol, IonIcon, IonRow, IonHeader, IonToolbar, IonTitle, IonContent, IonThumbnail, RouterLink],
+  imports: [CommonModule, IonCardContent, IonCardTitle, IonCardHeader, IonBadge, IonButton, IonButtons, IonSearchbar, IonText, IonLabel, IonCard, IonImg, IonCol, IonIcon, IonRow, IonHeader, IonToolbar, IonTitle, IonContent, IonThumbnail, RouterLink],
 })
 export class HomePage {
 
