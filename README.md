@@ -8,6 +8,18 @@ The app uses a live cart system, location-based currency, and a dark theme for b
 
 ---
 
+## How to Run
+
+1. Make sure Git is installed if not [here](https://git-scm.com/downloads) you can use git --version in Command Prompt to check
+2. Go to folder you want the project to be in
+3. Open Terminal
+4. 'git clone https://git-scm.com/downloads' then wait
+5. cd into project ( dir to check )
+6. 'npm install' then wait ( for ages )
+7. 'ionic serve'
+8. Open localhost/8100 ( Firefox opens immediately for me )
+
+
 ## Features
 
 - Cart system built using `BehaviorSubject` from **RxJS**
@@ -65,4 +77,6 @@ The project uses:
 **Cart Page**
 
 ![Cart Page Wireframe](src/assets/wireframes/cart-screen-wireframe.png)
+
+
 
