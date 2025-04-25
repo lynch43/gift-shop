@@ -41,6 +41,7 @@
 <ion-content>
 
   <ion-row>
+    
     <ion-col *ngFor="let item of items; let i = index" size="6" size-md="4" size-lg="3" size-xl="3">
       <ion-card [routerLink]="['/home/gifts', item?.id]">
         <ion-thumbnail>

@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>item-detail</ion-title>
+    <ion-title>Product</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home" color="dark"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button fill="clear" size="large" color="dark" [routerLink]="['/', 'home', 'gifts', item?.id, 'cart']">
         <ion-icon name="bag-handle" slot="icon-only"></ion-icon>
-        <ion-badge *ngIf="totalItems > 0">
+        <ion-badge *ngIf="totalItems > 0" color="primary">
           <ion-text>{{ totalItems }}</ion-text>
         </ion-badge>
       </ion-button>

@@ -27,7 +27,7 @@ export class ItemDetailPage implements OnInit {
   private cartService = inject(CartService);
 
   ngOnInit() {
-    this.getItem(); // fetch the item details
+    this.getItem(); 
 
     this.cartService.cart.subscribe((items) => {
       this.totalItems = items.length;
@@ -65,8 +65,8 @@ export class ItemDetailPage implements OnInit {
 
   }
 
-  addItem() {
-    this.cartService.addToCart(this.item);
+  async addItem() {
+    await this.cartService.addToCart(this.item);
     this.addedText();
   }
 

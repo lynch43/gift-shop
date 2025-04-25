@@ -54,3 +54,10 @@ I just did one for each page. All on mobile.
 
 
 ## Issues Persisting
+
+Cart icon does not update when adding bag on item-detail page. I tried a few solutions. that cart is working but its like there is a timing issue
+
+I have put await and async on the addItem Function to no avail.
+Also triied a setTimeout
+
+The likely fix would be to call the cart and read it after storage loads. 
