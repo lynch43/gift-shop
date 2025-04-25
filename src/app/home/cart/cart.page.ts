@@ -1,24 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonText } from '@ionic/angular/standalone';
-import { CartService } from '../../services/cart/cart.service'; // Double back
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonText, IonButton, IonButtons, IonFooter, IonBackButton } from '@ionic/angular/standalone';
+import { CartService } from '../../services/cart/cart.service';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss'],
   standalone: true,
-  imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonText,
-    CommonModule,
-    FormsModule
+  imports: [IonBackButton, IonFooter, 
+    IonButton, IonContent, IonHeader, IonTitle, IonToolbar,
+    IonList, IonItem, IonLabel, IonText, CommonModule, FormsModule, IonButtons,
   ]
 })
 export class CartPage implements OnInit {
@@ -34,4 +27,10 @@ export class CartPage implements OnInit {
     });
   }
 
+  /**
+   * Clears all items from the cart.
+   */
+  clearCart() {
+    this.cartService.clearCart();
+  }
 }

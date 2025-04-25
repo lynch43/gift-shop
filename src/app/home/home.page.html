@@ -21,7 +21,6 @@
   <ion-searchbar
     debounce="850"
     #searchInput
-    mode="ios"
     class="srchBar"
     placeholder="Know what you want?"
     (ionInput)="onSearchChange($event)">
@@ -32,7 +31,7 @@
   <ion-card-title>Location & Currency</ion-card-title>
 </ion-card-header>
 <ion-card-content>
-  <ion-button (click)="getGPSAndSetCurrency()">Get Location & Currency</ion-button>
+  <ion-button (click)="getGPSAndSetCurrency()">Set Currency with GPS</ion-button>
   <p>Latitude: {{ lat }}</p>
   <p>Longitude: {{ long }}</p>
   <p>Currency: <strong>{{ currency }}</strong></p>
