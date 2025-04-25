@@ -18,7 +18,7 @@ export class HomePage {
   lat: string = '' // stores the current latitude
   long: string = '' // stores the current longitude
 
-  currency: string = 'GBP' // set default currency to GBP cause it made sense starting off
+  currency: string = 'GBP'; // set default currency to GBP cause it made sense starting off
 
   items: any[] = [] // list of items to display
   allItems: any[] = [] // full copy of all items to search from

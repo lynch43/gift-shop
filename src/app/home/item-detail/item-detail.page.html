@@ -29,9 +29,8 @@
       {{ item?.title }}
       <p class="desc">{{ item?.description }}</p>
       <p>
-        <ion-text color="dark">€</ion-text>
-        <ion-text color="dark" class="price">
-          <span>{{ item?.price }}</span>
+        <ion-text color="light">
+          <strong>{{ currency === 'EUR' ? '€' : '£' }}{{ item?.price }}</strong>
         </ion-text>
       </p>
     </ion-label>

@@ -27,6 +27,9 @@ export class ItemDetailPage implements OnInit {
   private api = inject(ApiService);
   private cartService = inject(CartService);
 
+  currency: string = 'GBP';
+
+
   ngOnInit() {
     this.getItem(); 
 
