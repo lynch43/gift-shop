@@ -62,7 +62,7 @@ export class ItemDetailPage implements OnInit {
   }
 
   addItem() {
-    const result = this.cartService.addQuantity(this.item);
+    this.cartService.addToCart(this.item);
     this.addedText();
   }
 
