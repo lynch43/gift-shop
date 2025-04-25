@@ -13,11 +13,12 @@ The app uses a live cart system, location-based currency, and a dark theme for b
 1. Make sure Git is installed if not [here](https://git-scm.com/downloads) you can use git --version in Command Prompt to check
 2. Go to folder you want the project to be in
 3. Open Terminal
-4. 'git clone https://git-scm.com/downloads' then wait
+4. 'git clone https://github.com/lynch43/gift-shop.git' into terminal then wait
 5. cd into project ( dir to check )
-6. 'npm install' then wait ( for ages )
+6. 'npm install' into terminal then wait ( for ages )
 7. 'ionic serve'
 8. Open localhost/8100 ( Firefox opens immediately for me )
+9. I run project on an IPhone 13 using angular tools
 
 
 ## Features
