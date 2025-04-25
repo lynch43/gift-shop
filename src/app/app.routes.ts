@@ -3,50 +3,40 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     /*
-    * When user goes to /home, angular will scan this children array and will try and figure out what to load next
-    *
+    when user goes to /home, angular looks through this children array to figure out what page to show
     */
     path: 'home',
     children: [
       {
-        path: '', // empty because it is the root page
+        path: '', // root page for /home
         loadComponent: () => import('./home/home.page').then((m) => m.HomePage)
       },
       {
-        path: 'cart',
+        path: 'cart', // cart page under home
         loadComponent: () => import('./home/cart/cart.page').then(m => m.CartPage)
       },
       {
-        path: 'gifts/:id', // use this to path the ID
+        path: 'gifts/:id', // passing id to show item details
         children: [
           {
-            path: '',
+            path: '', // main item detail page
             loadComponent: () => import('./home/item-detail/item-detail.page').then((m) => m.ItemDetailPage)
           },
-
           {
-            path: 'cart',
+            path: 'cart', // cart under gift detail
             loadComponent: () => import('./home/cart/cart.page').then(m => m.CartPage)
           }
-
         ],
-        
       },
-      
-
-
     ]
   },
   {
-    path: '',
+    path: '', // if no path, redirect to home
     redirectTo: 'home',
     pathMatch: 'full',
   },
   {
-    path: 'cart',
-    loadComponent: () => import('./home/cart/cart.page').then( m => m.CartPage)
+    path: 'cart', // separate cart route outside of home path
+    loadComponent: () => import('./home/cart/cart.page').then(m => m.CartPage)
   },
-
-
-
 ];

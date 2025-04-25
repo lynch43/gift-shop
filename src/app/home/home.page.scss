@@ -1,33 +1,29 @@
 ion-card {
-    --background: var(--ion-color-light);
-    height: 14rem;
+    --background: var(--ion-color-light); /* setting the background to use ion built-in light color */
+    height: 14rem; /* fixed height so all cards stay the same even if text is different */
+    box-shadow: none; /* removed the default ionic card shadow cause i wanted it flat */
+    border: 5px solid var(ion-color-light); /* tried to match border color but missing -- might not even notice */
     margin: 0.3rem 0;
     border-radius: 8px;
-    box-shadow: none;
-    border: 1px solid var(ion-color-light);
-
 }
 
 ion-thumbnail {
     width: 100%;
-    height: 10rem;
+    height: 10rem; /* forces all thumbnails same height so layout stays clean */
     margin-bottom: 10px;
 }
 
 ion-card-title {
-    color: rgb(65, 124, 143);
+    color: rgb(65, 124, 143); /* custom color to fit theme, not using ionic color here */
 }
 
 ion-searchbar {
     color: rgb(58, 127, 150);
 }
 
-
-
 ion-img {
     height: 100%;
     border-radius: 8px;
-
 }
 
 ion-label {
@@ -38,16 +34,17 @@ p {
     font-size: 0.85rem;
     margin-top: 8px;
     font-weight: 500;
+    
     ion-text.rating {
-        float:right;
+        float: right; /* float stars to the right inside the p tag */
+        
         ion-icon {
-
-            font-size: 0.85rem;
+            font-size: 0.85rem; /* smaller star icons */
         }
     }
 }
 
+/* these two share margin */
 ion-label, p {
     margin: 0 8px;
-} 
-
+}

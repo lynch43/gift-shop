@@ -10,6 +10,7 @@ import { bagHandle, bagHandleOutline, star } from 'ionicons/icons';
 })
 export class AppComponent {
   constructor() {
+    // i add some custom icons so they can be used anywhere in the app
     addIcons({
       star,
       bagHandleOutline,
