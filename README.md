@@ -67,8 +67,18 @@ The likely fix would be to call the cart and read it after storage loads.
 
 ### Bounding box to set currency
 
-The inEuroZone if statment does tell you if you are in Ireland or England. Roughly. I used https://boundingbox.klokantech.com/ to Draw around Ireland. You could use it better than I did but really I am just showing that the geolocation is accurate. 
+The inEuroZone if statement does tell you if you are in Ireland or England. Roughly. I used https://boundingbox.klokantech.com/ to Draw around Ireland. You could use it better than I did but really I am just showing that the geolocation is accurate. 
 
 See images in word Doc
+
+###
+
+ERROR Error: No available storage method found.
+    _driverSet localforage.js:2504
+
+Angular Storage uses localforage as a storage method
+
+I tried installing like 'npm install localforge' to no avail.
+
 
 

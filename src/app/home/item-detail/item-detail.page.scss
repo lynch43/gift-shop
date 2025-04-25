@@ -2,13 +2,6 @@ ion-header {
     background:transparent;
     
 }
-ion-content {
-    --background: #121212;
-    color: #E0E0E0;
-  }
-ion-back-button {
-    color: #E0E0E0;
-}
 
 ion-toolbar {
     --background: transparent;
@@ -16,12 +9,15 @@ ion-toolbar {
 }
 
 ion-buttons {
-    background: rgbs(0, 0, 0, 0.15);
+    // background: rgbs(0, 0, 0, 0.15);
     border-radius: 50%;
 }
 
 ion-button {
     margin: 8px 4px;
+}
+bag-handle-outline {
+    color: white;
 }
 
 div.bg {
@@ -56,20 +52,25 @@ ion-item {
     ion-label {
         font-size: 1.5rem;
         font-weight: bold;
+        
 
         p {
             padding: 10px;
             margin-top: 15px;
+            color: white;
         }
 
         .price {
             margin-left: 5px;
             font-weight: normal;
+            color: white;
+
         }
 
         span {
             font-size: 1rem;
             font-weight: bold;
+            
         }
     }
 }
