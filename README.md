@@ -1,84 +1,71 @@
-# eCommerce App - Angular and Ionic
+# Gift Shop - Front End Web App ( Built for Front End Web Development in Atlantic Technical University )
 
-This project is a  eCommerce application developed using Angular and Ionic.
- The app provides a simple, clean user interface
- for browsing products and viewing item details. You can add items to a cart 
- and then view your cart. I also added a Geolocation feature that will determine wether the products should be displayed in
- different countries
+## About
 
+this is a frontend app built using **Angular** and **Ionic**  
+it connects to the [FakeStoreAPI](https://fakestoreapi.com/products) and is set up to run as a PWA on browser and mobile  
+the app uses a live cart system, location-based currency, and a dark theme for better user experience
 
-## Project Overview
-
-The purpose of this application is to serve as the foundation of an 
-eCommerce platform. It demonstrates key features typically found in shopping 
-applications such as a home page showcasing products and a dedicated item details page.
-
-This project is built using Visual Studio Code and tested on Windows 10.
-It was also built for purpose for an end of year project in Front End Web Development module year 2
-
-Some of the rquirements for said project were
-
-- 
+---
 
 ## Features
 
-- A home page that displays a list of available products
-- A detailed item page that is accessed when a product is clicked
-- Built using Angular for structure and logic, and Ionic for UI components
-- Used standalone components in the project
-- SCSS for styling. mainly for organisation. Most of this project could have been just done in CSS 
+- cart system built using `BehaviorSubject` from **RxJS**
+- cart persistence with browser `localStorage`
+- external data fetching with `HttpClient` from **@angular/common/http**
+- gps location pulled with `@capacitor/geolocation`
+- automatic currency set to EUR or GBP depending on coordinates
+- standalone ionic components setup for faster loading and cleaner routing
+- fully dark-themed layout built using Ionic SCSS variables
 
-## Technologies Used
+---
 
-- Angular 17+
-- Ionic Framework 7
-- TypeScript
-- SCSS
-- Visual Studio Code
-- Node.js and npm for package management
+## Technical Documentation
 
-## Folder Structure
+the project uses:
 
-The core structure of the application is as follows:
+- **Standalone Components** instead of the older Angular Module system  
+  referenced [Ionic Standalone Migration Docs](https://ionicframework.com/docs/angular/standalone-components) to structure the pages properly
 
-INSERT FOLDER STRUCTURE DIAGRAM HERE
+- **localStorage** directly instead of `@ionic/storage-angular`  
+  after testing, i decided to write my own `LocalStorageService` because ionic storage gave issues when testing with `ionic serve`  
+  cross referenced solutions on [Stack Overflow - Ionic Storage Issue](https://stackoverflow.com/questions/74439365/no-available-storage-method-found-in-ionic-angular)  
 
-## Wireframes 
+- **HttpClient and Observables** for API requests  
+  built an `ApiService` that uses `HttpClient.get()` to pull all products from FakeStoreAPI  
+  followed examples from [Angular Docs - HTTP Requests](https://angular.io/guide/http)
 
-I just did one for each page. All on mobile.
+- **BehaviorSubject** to manage cart items across the app  
+  cart items are pushed into a `BehaviorSubject` inside `CartService`  
+  components like Home and Cart pages subscribe to this to show live updates without manual refresh
 
-- link in Readme.md
+- **Capacitor Geolocation Plugin**  
+  pulled user gps data using `@capacitor/geolocation`  
+  based the currency switch logic on coordinates (eurozone or not)  
+  used [Capacitor Geolocation Docs](https://capacitorjs.com/docs/apis/geolocation) as a guide and the documentation of the Module 'Front End Web Development' used in college
 
 
-## API
 
+- **Error Handling**  
+  added try-catch blocks for gps failures  
+  handled possible undefined api responses when loading products
 
+---
 
+## Wireframes
 
-## Issues Persisting
+**Home Page**
 
-### Cart Icon
-Cart icon does not update when adding bag on item-detail page. I tried a few solutions. that cart is working but its like there is a timing issue
+> (./assets/wireframes/home-wireframe.png)
 
-I have put await and async on the addItem Function to no avail.
-Also triied a setTimeout
+**Item Detail Page**
 
-The likely fix would be to call the cart and read it after storage loads. 
+> (./assets/wireframes/item-detail-wireframe.png)
 
-### Bounding box to set currency
+**Cart Page**
 
-The inEuroZone if statement does tell you if you are in Ireland or England. Roughly. I used https://boundingbox.klokantech.com/ to Draw around Ireland. You could use it better than I did but really I am just showing that the geolocation is accurate. 
+> (./assets/wireframes/cart-wireframe.png)
 
-See images in word Doc 3 of them
-
-###
-
-ERROR Error: No available storage method found.
-    _driverSet localforage.js:2504
-
-Angular Storage uses localforage as a storage method
-
-I tried installing like 'npm install localforge' to no avail.
-
+---
 
 

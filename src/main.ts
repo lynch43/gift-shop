@@ -7,20 +7,12 @@ import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 
-import { IonicStorageModule } from '@ionic/storage-angular';
-
+// bootstraps the app and sets up core providers
 bootstrapApplication(AppComponent, {
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideIonicAngular(),
-    provideHttpClient(),
-    provideRouter(routes, withPreloading(PreloadAllModules)),
-
-    importProvidersFrom(
-      IonicStorageModule.forRoot({
-        name: '__mydb',
-        driverOrder: ['indexeddb', 'localstorage', 'memory']
-      })
-    )
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, // makes navigation work like ionic expects
+    provideIonicAngular(), // sets up ionic stuff for standalone components
+    provideHttpClient(), // needed for api calls and observable stuff
+    provideRouter(routes, withPreloading(PreloadAllModules)), // router setup with preloading to make page loads faster
   ],
 });
