@@ -16,21 +16,21 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class CartPage implements OnInit {
 
-  cartItems: any[] = []; // holds items to display
+  cartItems: any[] = [] // holds the items to show in the cart page
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    // Subscribe to the cart observable to get updates
+    // I subscribe to the cart so this page stays updated when things are added or cleared
     this.cartService.cart.subscribe((items) => {
-      this.cartItems = items;
-    });
+      this.cartItems = items
+    })
   }
 
   /**
-   * Clears all items from the cart.
+   * clears all items from the cart by calling my cartService
    */
   clearCart() {
-    this.cartService.clearCart();
+    this.cartService.clearCart()
   }
 }

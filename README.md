@@ -69,7 +69,7 @@ The likely fix would be to call the cart and read it after storage loads.
 
 The inEuroZone if statement does tell you if you are in Ireland or England. Roughly. I used https://boundingbox.klokantech.com/ to Draw around Ireland. You could use it better than I did but really I am just showing that the geolocation is accurate. 
 
-See images in word Doc
+See images in word Doc 3 of them
 
 ###
 

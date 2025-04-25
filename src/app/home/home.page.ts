@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonRow, IonIcon, IonCol, IonThumbnail, IonImg, IonCard, IonLabel, IonText, IonSearchbar, IonButtons, IonButton, IonBadge, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
 import { ApiService } from '../services/api/api.service';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../services/cart/cart.service';
 import { Subscription } from 'rxjs';
 import { Geolocation } from '@capacitor/geolocation';
-
 
 @Component({
   selector: 'app-home',
@@ -16,115 +15,101 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class HomePage {
 
-  // Used to store current coordinates
-  lat: string = '';
-  long: string = '';
+  lat: string = '' // stores the current latitude
+  long: string = '' // stores the current longitude
 
-  /* Default set here is weird. But when you see it 
-      says euro then you see the benefit */ 
-  currency: string = 'GBP';
+  currency: string = 'GBP' // set default currency to GBP cause it made sense starting off
 
-  /* items to display and all Items as master copy to filter / search from */
-  items: any[] = [];
-  allItems: any[] = [];
+  items: any[] = [] // list of items to display
+  allItems: any[] = [] // full copy of all items to search from
 
-  /* Search inputs */
-  query!: string;
+  query!: string // search input
 
-  /* Will be set to 0 if deployed */
-  totalItems = 1;
+  totalItems = 1 // how many items showing on cart badge
 
-  /* Subscription used to track live update from the cart */
-  cartSub!: Subscription;
+  cartSub!: Subscription // will be used for live tracking cart updates
 
-  /* Global */
-  private api = inject(ApiService);
-  private cartService = inject(CartService);
-
-
-
+  private api = inject(ApiService)
+  private cartService = inject(CartService)
 
   constructor() { }
 
   ngOnInit() {
-    /** On load, get items + user location + currency setup */
-    this.getItems();
-    this.getGPSAndSetCurrency();
+    // when page loads i get all the items and set user location and currency
+    this.getItems()
+    this.getGPSAndSetCurrency()
 
-    /** Subscribes to cart changes and updates cart icon live */
+    // subscribe to cart to update cart icon live
     this.cartService.cart.subscribe({
       next: (cart) => {
-        this.totalItems = cart.length;
+        this.totalItems = cart.length
       }
-    });
+    })
   }
 
-  /** Cleans up the cart subscription when page is destroyed */
+  // clean up cart subscription when page is destroyed
   ngOnDestroy(): void {
-    if (this.cartSub) this.cartSub.unsubscribe();
+    if (this.cartSub) this.cartSub.unsubscribe()
   }
 
-  /** Load all items into items and allItems arrays */
+  // fetch all products from api and store them
   getItems() {
-
     this.api.getAllProducts().subscribe({
       next: (data) => {
-        this.allItems = data;
-        this.items = [...this.allItems];
+        this.allItems = data
+        this.items = [...this.allItems]
       },
       error: (err) => console.error('Error getting the products', err)
-    });
-
+    })
   }
 
-  /** Triggered on search bar input */
+  // triggered when i type into search bar
   onSearchChange(event: any) {
-    console.log(event.detail.value);
-    this.query = event.detail.value.toLowerCase(); // Avoid case-sensitivity bugs
-    this.querySearch(); // Do the filtering
+    console.log(event.detail.value)
+    this.query = event.detail.value.toLowerCase() // lowercase so search is not case sensitive
+    this.querySearch()
   }
 
-  /** Based on query, filter items or reset list */
+  // based on what i type either filter items or reset to full list
   querySearch() {
-    this.items = [];
+    this.items = []
     if (this.query.length > 0) {
-      this.searchItems();
+      this.searchItems()
     } else {
-      this.items = [...this.allItems]; // Show full list again
+      this.items = [...this.allItems]
     }
   }
 
-  /** Filter items from API by name containing query string */
+  // filter items where the title includes my search text
   searchItems() {
     if (!this.query || this.query.trim() === '') {
-      this.items = [...this.allItems]; // show all items when query is empty
+      this.items = [...this.allItems]
     } else {
-      const queryLower = this.query.toLowerCase();
+      const queryLower = this.query.toLowerCase()
       this.items = this.allItems.filter(item =>
         item.title.toLowerCase().includes(queryLower)
-      );
+      )
     }
   }
-  
 
-  /** Get coordinates using Capacitor Geolocation */
+  // get gps coords and set currency based on where user is
   async getGPSAndSetCurrency() {
     try {
-      const coords = await Geolocation.getCurrentPosition();
-      this.lat = coords.coords.latitude.toString();
-      this.long = coords.coords.longitude.toString();
+      const coords = await Geolocation.getCurrentPosition()
+      this.lat = coords.coords.latitude.toString()
+      this.long = coords.coords.longitude.toString()
 
-      /** Use lat/lng to determine if user is in Eurozone */
-      this.setCurrencyFromCoords(coords.coords.latitude, coords.coords.longitude);
+      // after getting location set currency
+      this.setCurrencyFromCoords(coords.coords.latitude, coords.coords.longitude)
     } catch (error) {
-      console.error('Failed to get GPS location:', error);
+      console.error('Failed to get GPS location:', error)
     }
   }
 
-  /** Basic check for European region to set currency */
+  // basic check to see if user is in eurozone and set currency
   setCurrencyFromCoords(lat: number, lng: number) {
-    const inEuroZone = (lat >= 35 && lat <= 60) && (lng >= -10 && lng <= 30);
-    this.currency = inEuroZone ? 'EUR' : 'GBP';
-    console.log(`Currency based on location: ${this.currency}`);
+    const inEuroZone = (lat >= 35 && lat <= 60) && (lng >= -10 && lng <= 30)
+    this.currency = inEuroZone ? 'EUR' : 'GBP'
+    console.log(`Currency based on location: ${this.currency}`)
   }
 }

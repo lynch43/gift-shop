@@ -3,63 +3,54 @@ import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
 
 /**
- * CartService is where we handle everything related to the shopping cart
- * Instead of using Ionics async storage (which gave me issues)
- * I simplified it to use basic browser localStorage through a helper service
+ * handles everything to do with the shopping cart
+ * I moved from ionic storage to localStorage cause it was simpler and caused less problems
  */
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private CART_KEY = 'myCartItems'; // Just a simple key for storing in localStorage
+  private CART_KEY = 'myCartItems' // key I use to save the cart to storage
 
-  // This holds the live cart data in memory
-  private _cart = new BehaviorSubject<any[]>([]);
+  private _cart = new BehaviorSubject<any[]>([]) // holds the live cart in memory
 
-  // Other parts of the app can subscribe to this to get real-time cart updates
-  cart = this._cart.asObservable();
+  cart = this._cart.asObservable() // lets other parts of the app subscribe to the cart
 
   constructor(private localStorage: LocalStorageService) {
-    this.loadCart(); // Load cart from localStorage when the service starts
+    this.loadCart() // load the cart from localStorage when service starts
   }
 
   /**
-   * Crt items from localStorage to BehaviorSubject
-
-   * So if someone added items last time they visited they will still be there
+   * gets the cart from storage and puts it into memory
+   * if nothing is saved starts with an empty array
    */
   loadCart() {
-    const items = this.localStorage.get(this.CART_KEY);
-    this._cart.next(items || []);
+    const items = this.localStorage.get(this.CART_KEY)
+    this._cart.next(items || [])
   }
 
   /**
-   * Adds an item to the cart:
-   * - updates the in-memory cart
-   * - saves the updated cart to localStorage
+   * adds an item to the cart in memory and updates storage
    */
   addToCart(item: any) {
-    const cart = this._cart.value;
-    cart.push(item);
-    this._cart.next(cart);
-    this.localStorage.set(this.CART_KEY, cart);
+    const cart = this._cart.value
+    cart.push(item)
+    this._cart.next(cart)
+    this.localStorage.set(this.CART_KEY, cart)
   }
 
   /**
-   * Clears everything from the cart:
-   * - wipes in-memory cart
-   * - removes saved cart from localStorage
+   * clears the cart from memory and from storage
    */
   clearCart() {
-    this._cart.next([]);
-    this.localStorage.remove(this.CART_KEY);
+    this._cart.next([])
+    this.localStorage.remove(this.CART_KEY)
   }
 
   /**
-   * Returns the current number of items in the cart
-   * 
+   * gets the total number of items in the cart
    */
   getTotalItemCount(): number {
-    return this._cart.value.length;
+    return this._cart.value.length
   }
 }
