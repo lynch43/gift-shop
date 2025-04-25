@@ -6,13 +6,14 @@ import { inject } from '@angular/core';
 import { NavController } from '@ionic/angular/standalone';
 import { ApiService } from 'src/app/services/api/api.service';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.page.html',
   styleUrls: ['./item-detail.page.scss'],
   standalone: true,
-  imports: [IonBadge, IonButton, IonFooter, IonText, IonLabel, IonItem, IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
+  imports: [RouterLink, IonBadge, IonButton, IonFooter, IonText, IonLabel, IonItem, IonIcon, IonButtons, IonTitle, IonBackButton, IonButtons, IonToolbar, IonHeader, IonContent],
 })
 export class ItemDetailPage implements OnInit {
 
