@@ -108,6 +108,7 @@ export class HomePage {
 
   // basic check to see if user is in eurozone and set currency
   setCurrencyFromCoords(lat: number, lng: number) {
+    // This doesn't work exactly. It is explained near the end of README.md
     const inEuroZone = (lat >= 35 && lat <= 60) && (lng >= -10 && lng <= 30)
     this.currency = inEuroZone ? 'EUR' : 'GBP'
     console.log(`Currency based on location: ${this.currency}`)
