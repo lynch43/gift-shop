@@ -1,75 +1,56 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Storage } from '@ionic/storage-angular';
+import { LocalStorageService } from '../local-storage.service';
 
 /**
  * CartService handles the logic for managing shopping cart items.
- * It uses Ionic Storage to save cart items persistently,
- * and a BehaviorSubject to update components in real-time.
+ * This version uses simple browser localStorage via LocalStorageService,
+ * avoiding async setup and compatibility issues from Ionic Storage.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private CART_KEY = 'myCartItems'; // Key used to store/retrieve cart data
-  private _storage!: Storage;
-  private storageReady = false; // Used to check if storage is initialized
 
-  // BehaviorSubject allows us to update the cart live across the app
   private _cart = new BehaviorSubject<any[]>([]);
-  
-  // This is what other components will subscribe to
   cart = this._cart.asObservable();
 
-  /**
-   * When the service is created, we run init()
-   * to set up storage and load saved cart items.
-   */
-  constructor(private storage: Storage) {
-    this.init();
+  constructor(private localStorage: LocalStorageService) {
+    this.loadCart();
   }
 
   /**
-   * Initializes Ionic Storage and loads cart items (if any) from previous sessions.
-   * Updates the cart BehaviorSubject with the loaded data.
+   * Loads cart items from localStorage into the BehaviorSubject.
+   * This makes saved cart items appear immediately on app start.
    */
-  async init() {
-    this._storage = await this.storage.create(); // Set up Ionic Storage
-    const items = await this._storage.get(this.CART_KEY); // Get saved cart items
-    this._cart.next(items || []); // Set the cart value, or use empty array
-    this.storageReady = true; // Mark storage as ready
+  loadCart() {
+    const items = this.localStorage.get(this.CART_KEY);
+    this._cart.next(items || []);
   }
 
   /**
-   * Adds a new item to the cart and updates both:
-   * - The in-memory cart (BehaviorSubject)
-   * - The saved cart (Ionic Storage)
+   * Adds a new item to the cart and saves it to localStorage.
    * @param item The item object to be added to the cart
    */
-  async addToCart(item: any) {
-    const cart = this._cart.value; // Get current cart items
-    cart.push(item); // Add the new item
-    this._cart.next(cart); // Update observable value
-    if (this.storageReady) {
-      await this.storage.set(this.CART_KEY, cart); // Save to storage
-    }
+  addToCart(item: any) {
+    const cart = this._cart.value;
+    cart.push(item);
+    this._cart.next(cart);
+    this.localStorage.set(this.CART_KEY, cart);
   }
 
   /**
-   * Clears all items from the cart (both memory and storage).
-   * Typically used for a "Clear Cart" button or after checkout.
+   * Clears the cart from memory and from localStorage.
    */
-  async clearCart() {
-    this._cart.next([]); // Empty the cart in memory
-    if (this.storageReady) {
-      await this.storage.remove(this.CART_KEY); // Remove saved cart from storage
-    }
+  clearCart() {
+    this._cart.next([]);
+    this.localStorage.remove(this.CART_KEY);
   }
 
   /**
-   * Returns the total number of items in the cart.
-   * This can be used for showing a cart badge or cart summary.
-   * @returns Number of items currently in the cart
+   * Returns the number of items currently in the cart.
+   * @returns total item count
    */
   getTotalItemCount(): number {
     return this._cart.value.length;
