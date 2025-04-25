@@ -47,7 +47,7 @@
         <!-- Will navigate to the item detail page with the dynamic Item ID -->
         <ion-card [routerLink]="['/', 'home', 'gifts', item?.id]">
           <ion-thumbnail>
-            <ion-img [src]="item?.cover"></ion-img>
+            <ion-img [src]="item?.image"></ion-img>
           </ion-thumbnail>
 
           <ion-label>
@@ -58,7 +58,7 @@
 
 
               <ion-text class="rating" color="dark">
-                {{item?.rating}}
+                {{item?.rating?.rate}}
                 <ion-icon name="star" color="yello"></ion-icon>
               </ion-text>
             </p>

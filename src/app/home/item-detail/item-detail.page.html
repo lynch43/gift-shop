@@ -5,47 +5,43 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header>
-      <ion-toolbar slot="fixed" class="ion-no-border">
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/home" color="dark">
-          </ion-back-button>
-        </ion-buttons>
+  
+  <ion-toolbar slot="fixed" class="ion-no-border">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="dark"></ion-back-button>
+    </ion-buttons>
 
+    
+    <ion-button
+      fill="clear"
+      size="large"
+      color="dark">
+      <ion-icon name="bag-handle" slot="icon-only"></ion-icon>
 
-        <ion-button
-          fill="clear"
-          soze="large"
-          color="dark"
-        >
-          <ion-icon name="bag-handle" slot="icon-only"></ion-icon>
-          @if(totalItems > 0) { 
-            <ion-badge>
-              <ion-text>{{totalItems}}</ion-text>
-            </ion-badge>
-          }
-        </ion-button>
-
-          
-      </ion-toolbar>
       
-  </ion-header>
-  <div [style.backgroundImage]="'url(' + item?.cover +')'" class="bg">
+      <ion-badge *ngIf="totalItems > 0">
+        <ion-text>{{ totalItems }}</ion-text>
+      </ion-badge>
+    </ion-button>
+  </ion-toolbar>
+
+  
+  <div [style.backgroundImage]="'url(' + item?.image +')'" class="bg">
     <div class="rating">
       <ion-icon name="star" color="warning"></ion-icon>
-      {{ item?.rating }}
+      
+      {{ item?.rating?.rate }}
     </div>
   </div>
 
   <ion-item>
     <ion-label>
-      {{item?.name}}
-      <p class="desc">{{item?.description}}</p>
-
+      {{ item?.title }}
+      <p class="desc">{{ item?.description }}</p>
       <p>
         <ion-text color="dark">€</ion-text>
         <ion-text color="dark" class="price">
-          <span>{{ item?.price}}</span>
+          <span>{{ item?.price }}</span>
         </ion-text>
       </p>
     </ion-label>
@@ -60,12 +56,13 @@
       expand="block"
       [color]="addToBag ? 'success' : 'primary'"
       (click)="addItem()">
-        <ion-icon 
+      <ion-icon 
         slot="start" 
-        [name]="addToBag ? 'bag-handle' : 'bag-handle-outline'"
-        ></ion-icon>
+        [name]="addToBag ? 'bag-handle' : 'bag-handle-outline'">
+      </ion-icon>
       <ion-text>
-        {{addToBag || 'Add To Bag'}}
+        
+        {{ addToBag ? addToBag : 'Add To Bag' }}
       </ion-text>
     </ion-button>
   </ion-toolbar>
