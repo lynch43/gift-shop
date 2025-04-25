@@ -22,12 +22,16 @@ export class ItemDetailPage implements OnInit {
   id!: string;
   item: any;
   addToBag!: any;
-  totalItems = 1;
+  totalItems = 0;
   private api = inject(ApiService);
   private cartService = inject(CartService);
 
   ngOnInit() {
     this.getItem(); // fetch the item details
+
+    this.cartService.cart.subscribe((items) => {
+      this.totalItems = items.length;
+    });
 
   }
 

@@ -52,9 +52,9 @@ export class HomePage {
     this.getGPSAndSetCurrency();
 
     /** Subscribes to cart changes and updates cart icon live */
-    this.cartSub = this.cartService.cart.subscribe({
+    this.cartService.cart.subscribe({
       next: (cart) => {
-        this.totalItems = cart ? cart?.totalItem : 0;
+        this.totalItems = cart.length;
       }
     });
   }

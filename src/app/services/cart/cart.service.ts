@@ -12,6 +12,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class CartService {
   private CART_KEY = 'myCartItems'; // Key used to store/retrieve cart data
+  private _storage!: Storage;
   private storageReady = false; // Used to check if storage is initialized
 
   // BehaviorSubject allows us to update the cart live across the app
@@ -33,8 +34,8 @@ export class CartService {
    * Updates the cart BehaviorSubject with the loaded data.
    */
   async init() {
-    const store = await this.storage.create(); // Set up Ionic Storage
-    const items = await store.get(this.CART_KEY); // Get saved cart items
+    this._storage = await this.storage.create(); // Set up Ionic Storage
+    const items = await this._storage.get(this.CART_KEY); // Get saved cart items
     this._cart.next(items || []); // Set the cart value, or use empty array
     this.storageReady = true; // Mark storage as ready
   }

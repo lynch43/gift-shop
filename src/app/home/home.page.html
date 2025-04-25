@@ -8,7 +8,7 @@
 
 <ion-toolbar>
   <ion-buttons slot="end">
-    <ion-button fill="clear"[routerLink]="['/', 'home', 'cart']">
+    <ion-button fill="clear" [routerLink]="['/', 'home', 'cart']">
       <ion-icon name="bag-handle"></ion-icon>
       <ion-badge *ngIf="totalItems > 0" color="primary">
         <ion-text>{{ totalItems }}</ion-text>
