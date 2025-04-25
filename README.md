@@ -53,11 +53,22 @@ I just did one for each page. All on mobile.
 ## API
 
 
+
+
 ## Issues Persisting
 
+### Cart Icon
 Cart icon does not update when adding bag on item-detail page. I tried a few solutions. that cart is working but its like there is a timing issue
 
 I have put await and async on the addItem Function to no avail.
 Also triied a setTimeout
 
 The likely fix would be to call the cart and read it after storage loads. 
+
+### Bounding box to set currency
+
+The inEuroZone if statment does tell you if you are in Ireland or England. Roughly. I used https://boundingbox.klokantech.com/ to Draw around Ireland. You could use it better than I did but really I am just showing that the geolocation is accurate. 
+
+See images in word Doc
+
+

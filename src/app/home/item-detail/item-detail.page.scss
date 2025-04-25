@@ -2,6 +2,13 @@ ion-header {
     background:transparent;
     
 }
+ion-content {
+    --background: #121212;
+    color: #E0E0E0;
+  }
+ion-back-button {
+    color: #E0E0E0;
+}
 
 ion-toolbar {
     --background: transparent;
