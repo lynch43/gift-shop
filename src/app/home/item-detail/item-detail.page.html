@@ -1,35 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>item-detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" size="large" color="dark">
+        <ion-icon name="bag-handle" slot="icon-only"></ion-icon>
+        <ion-badge *ngIf="totalItems > 0">
+          <ion-text>{{ totalItems }}</ion-text>
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <ion-toolbar slot="fixed" class="ion-no-border">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" color="dark"></ion-back-button>
-    </ion-buttons>
 
-    
-    <ion-button
-      fill="clear"
-      size="large"
-      color="dark">
-      <ion-icon name="bag-handle" slot="icon-only"></ion-icon>
-
-      
-      <ion-badge *ngIf="totalItems > 0">
-        <ion-text>{{ totalItems }}</ion-text>
-      </ion-badge>
-    </ion-button>
-  </ion-toolbar>
-
-  
   <div [style.backgroundImage]="'url(' + item?.image +')'" class="bg">
     <div class="rating">
       <ion-icon name="star" color="warning"></ion-icon>
-      
       {{ item?.rating?.rate }}
     </div>
   </div>
@@ -61,7 +51,6 @@
         [name]="addToBag ? 'bag-handle' : 'bag-handle-outline'">
       </ion-icon>
       <ion-text>
-        
         {{ addToBag ? addToBag : 'Add To Bag' }}
       </ion-text>
     </ion-button>
