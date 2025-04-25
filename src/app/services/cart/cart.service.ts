@@ -3,26 +3,30 @@ import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
 
 /**
- * CartService handles the logic for managing shopping cart items.
- * This version uses simple browser localStorage via LocalStorageService,
- * avoiding async setup and compatibility issues from Ionic Storage.
+ * CartService is where we handle everything related to the shopping cart
+ * Instead of using Ionics async storage (which gave me issues)
+ * I simplified it to use basic browser localStorage through a helper service
  */
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private CART_KEY = 'myCartItems'; // Key used to store/retrieve cart data
+  private CART_KEY = 'myCartItems'; // Just a simple key for storing in localStorage
 
+  // This holds the live cart data in memory
   private _cart = new BehaviorSubject<any[]>([]);
+
+  // Other parts of the app can subscribe to this to get real-time cart updates
   cart = this._cart.asObservable();
 
   constructor(private localStorage: LocalStorageService) {
-    this.loadCart();
+    this.loadCart(); // Load cart from localStorage when the service starts
   }
 
   /**
-   * Loads cart items from localStorage into the BehaviorSubject.
-   * This makes saved cart items appear immediately on app start.
+   * Crt items from localStorage to BehaviorSubject
+
+   * So if someone added items last time they visited they will still be there
    */
   loadCart() {
     const items = this.localStorage.get(this.CART_KEY);
@@ -30,8 +34,9 @@ export class CartService {
   }
 
   /**
-   * Adds a new item to the cart and saves it to localStorage.
-   * @param item The item object to be added to the cart
+   * Adds an item to the cart:
+   * - updates the in-memory cart
+   * - saves the updated cart to localStorage
    */
   addToCart(item: any) {
     const cart = this._cart.value;
@@ -41,7 +46,9 @@ export class CartService {
   }
 
   /**
-   * Clears the cart from memory and from localStorage.
+   * Clears everything from the cart:
+   * - wipes in-memory cart
+   * - removes saved cart from localStorage
    */
   clearCart() {
     this._cart.next([]);
@@ -49,8 +56,8 @@ export class CartService {
   }
 
   /**
-   * Returns the number of items currently in the cart.
-   * @returns total item count
+   * Returns the current number of items in the cart
+   * 
    */
   getTotalItemCount(): number {
     return this._cart.value.length;
