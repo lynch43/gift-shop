@@ -43,7 +43,7 @@ The project uses:
   Pulled user GPS data using `@capacitor/geolocation`. 
 
   Based the currency switch logic on coordinates (eurozone or not). 
-  I checked it to make sure it is somewhat accurate. ![screenshots](src\assets\geolocation-test.png) 
+  I checked it to make sure it is somewhat accurate. ![screenshots](src/assets/geolocation-test.png) 
   Used [Capacitor Geolocation Docs](https://capacitorjs.com/docs/apis/geolocation) as a guide and the documentation of the module 'Front End Web Development' used in college.
 
 - **Error Handling**  
@@ -56,13 +56,13 @@ The project uses:
 
 **Home Page**
 
-![Home Page Wireframe](src\assets\wireframes\home-wireframe.png)
+![Home Page Wireframe](src/assets/wireframes/home-wireframe.png)
 
 **Item Detail Page**
 
-![Item Detail Page Wireframe](src\assets\wireframes\item-detail-wireframe.png)
+![Item Detail Page Wireframe](src/assets/wireframes/item-detail-wireframe.png)
 
 **Cart Page**
 
-![Cart Page Wireframe](src\assets\wireframes\cart-screen-wireframe.png)
+![Cart Page Wireframe](src/assets/wireframes/cart-screen-wireframe.png)
 
